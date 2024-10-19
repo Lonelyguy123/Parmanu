@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="parmanu-builder">
+	<schema id="org.gnome.parmanu" path="/org/gnome/parmanu/">
+	</schema>
+</schemalist>

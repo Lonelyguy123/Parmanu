@@ -1,0 +1,8 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/org.gnome.parmanu.desktop.in
+data/org.gnome.parmanu.metainfo.xml.in
+data/org.gnome.parmanu.gschema.xml
+src/main.py
+src/window.py
+src/window.ui

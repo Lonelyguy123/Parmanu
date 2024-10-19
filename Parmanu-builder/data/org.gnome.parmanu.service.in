@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.gnome.parmanu
+Exec=@bindir@/parmanu-builder --gapplication-service
