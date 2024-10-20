@@ -1,5 +1,3 @@
-# main.py
-#
 # Copyright 2024 Shastha-orb
 #
 # This program is free software: you can redistribute it and/or modify
@@ -23,9 +21,8 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
-from gi.repository import Gtk, Gio, Adw
+from gi.repository import Gtk, Gio, Adw, Gdk
 from .window import ParmanuBuilderWindow
-
 
 class ParmanuBuilderApplication(Adw.Application):
     """The main application singleton class."""
@@ -33,13 +30,20 @@ class ParmanuBuilderApplication(Adw.Application):
     def __init__(self):
         super().__init__(application_id='org.gnome.parmanu',
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS)
+
+        # Load CSS
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_resource('/org/gnome/parmanu/styles/style.css')
+        Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(),
+                                                  css_provider,
+                                                  Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
 
     def do_activate(self):
         """Called when the application is activated.
-
         We raise the application's main window, creating it if
         necessary.
         """
@@ -66,7 +70,6 @@ class ParmanuBuilderApplication(Adw.Application):
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.
-
         Args:
             name: the name of the action
             callback: the function to be called when the action is
@@ -78,7 +81,6 @@ class ParmanuBuilderApplication(Adw.Application):
         self.add_action(action)
         if shortcuts:
             self.set_accels_for_action(f"app.{name}", shortcuts)
-
 
 def main(version):
     """The application's entry point."""

@@ -3,5 +3,6 @@
   <gresource prefix="/org/gnome/parmanu">
     <file preprocess="xml-stripblanks">window.ui</file>
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+    <file>/home/shastha-orb/Desktop/parmanu-git/Parmanu/Parmanu-builder/src/Styles/Styles.css</file><!-- file resource added-->
   </gresource>
 </gresources>
