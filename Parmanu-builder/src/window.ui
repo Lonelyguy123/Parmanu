@@ -112,7 +112,7 @@
                         <property name="width-request">150</property>
                         <property name="height-request">150</property>
                         <style>
-                          <class name="card"/>
+                          <class name="suggested-action"/>
                         </style>
                       </object>
                     </child>
@@ -123,7 +123,7 @@
                         <property name="width-request">150</property>
                         <property name="height-request">150</property>
                         <style>
-                          <class name="card"/>
+                          <class name="suggested-action"/>
                         </style>
                       </object>
                     </child>
@@ -134,7 +134,7 @@
                         <property name="width-request">150</property>
                         <property name="height-request">150</property>
                         <style>
-                          <class name="card"/>
+                          <class name="suggested-action"/>
                         </style>
                       </object>
                     </child>
@@ -144,6 +144,7 @@
                   <object class="GtkBox">
                     <property name="homogeneous">true</property>
                     <property name="spacing">30</property>
+                    <property name="margin-top">100-</property>
                     <child>
                       <object class="GtkPicture" id="file_conversion_image">
                         <property name="can-shrink">false</property>
@@ -172,6 +173,52 @@
                 </child>
               </object>
             </child>
+            <!-- Footer Section -->
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="spacing">10</property>
+                <property name="halign">center</property>
+                <property name="valign">end</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Support:</property>
+                    <style>
+                      <class name="footer-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="support_email">
+                    <property name="label">shasthatyarla@gmail.com</property>
+                    <property name="uri">mailto:shasthatyarla@gmail.com</property>
+                    <style>
+                      <class name="footer-link"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="linkedin_link">
+                    <property name="label">LinkedIn</property>
+                    <property name="uri">https://www.linkedin.com/in/shastha-tyarla-2bb845263/</property>
+                    <style>
+                      <class name="footer-link"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLinkButton" id="instagram_link">
+                    <property name="label">Instagram</property>
+                    <property name="uri">https://www.instagram.com/shastha_tyarla/profilecard/?igsh=MWY3OHJhcW91YXhydg==</property>
+                    <style>
+                      <class name="footer-link"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
       </object>
@@ -194,3 +241,4 @@
     </section>
   </menu>
 </interface>
+
