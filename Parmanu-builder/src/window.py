@@ -1,30 +1,44 @@
-# window.py
-#
-# Copyright 2024 Shastha-orb
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
-# SPDX-License-Identifier: GPL-3.0-or-later
-
-from gi.repository import Adw
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk, GdkPixbuf, GLib
+import os
 
 @Gtk.Template(resource_path='/org/gnome/parmanu/window.ui')
 class ParmanuBuilderWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'ParmanuBuilderWindow'
 
-    label = Gtk.Template.Child()
+    file_conversion_button = Gtk.Template.Child()
+    file_splitting_button = Gtk.Template.Child()
+    file_merging_button = Gtk.Template.Child()
+    file_conversion_image = Gtk.Template.Child()
+    file_splitting_image = Gtk.Template.Child()
+    file_merging_image = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self.file_conversion_button.connect('clicked', self.on_file_conversion_clicked)
+        self.file_splitting_button.connect('clicked', self.on_file_splitting_clicked)
+        self.file_merging_button.connect('clicked', self.on_file_merging_clicked)
+
+        self.load_images()
+
+    def load_images(self):
+        # Replace these paths with the actual paths to your images
+        conversion_image_path = '/home/shastha-orb/Desktop/parmanu-git/Parmanu/Parmanu-builder/src/Images/file conversion.png'
+        splitting_image_path = '/home/shastha-orb/Desktop/parmanu-git/Parmanu/Parmanu-builder/src/Images/file splitting.png'
+        merging_image_path = '/home/shastha-orb/Desktop/parmanu-git/Parmanu/Parmanu-builder/src/Images/file merging.png'
+
+        self.file_conversion_image.set_filename(conversion_image_path)
+        self.file_splitting_image.set_filename(splitting_image_path)
+        self.file_merging_image.set_filename(merging_image_path)
+
+    def on_file_conversion_clicked(self, button):
+        print("File conversion clicked")
+        # Add your file conversion logic here
+
+    def on_file_splitting_clicked(self, button):
+        print("File splitting clicked")
+        # Add your file splitting logic here
+
+    def on_file_merging_clicked(self, button):
+        print("File merging clicked")
+        # Add your file merging logic here

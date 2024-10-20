@@ -3,33 +3,135 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="ParmanuBuilderWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">Parmanu-builder</property>
+    <property name="title" translatable="yes">parmanu-builder</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
-    <property name="content">
-      <object class="AdwToolbarView">
-        <child type="top">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
           <object class="AdwHeaderBar">
             <child type="end">
               <object class="GtkMenuButton">
-                <property name="primary">True</property>
                 <property name="icon-name">open-menu-symbolic</property>
-                <property name="tooltip-text" translatable="yes">Main Menu</property>
                 <property name="menu-model">primary_menu</property>
               </object>
             </child>
           </object>
         </child>
-        <property name="content">
-          <object class="GtkLabel" id="label">
-            <property name="label" translatable="yes">Hello, World!</property>
-            <style>
-              <class name="title-1"/>
-            </style>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">20</property>
+            <property name="margin-top">20</property>
+            <property name="margin-bottom">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
+            <!-- Hero Section -->
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">10</property>
+                <property name="halign">center</property>
+                <property name="margin-bottom">40</property>
+                <child>
+                  <object class="GtkLabel" id="hero_title">
+                    <property name="label">Parmanu</property>
+                    <style>
+                      <class name="title-1"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="hero_tagline">
+                    <property name="label">Your ultimate file manipulation toolkit</property>
+                    <style>
+                      <class name="subtitle-1"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <!-- Existing content -->
+            <child>
+              <object class="GtkBox">
+                <property name="homogeneous">true</property>
+                <property name="spacing">10</property>
+                <child>
+                  <object class="GtkButton" id="file_conversion_button">
+                    <property name="label">File conversion</property>
+                    <property name="use_underline">True</property>
+                    <property name="width-request">150</property>
+                    <property name="height-request">150</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="file_splitting_button">
+                    <property name="label">File splitting</property>
+                    <property name="use_underline">True</property>
+                    <property name="width-request">150</property>
+                    <property name="height-request">150</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="file_merging_button">
+                    <property name="label">File merging</property>
+                    <property name="use_underline">True</property>
+                    <property name="width-request">150</property>
+                    <property name="height-request">150</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="orientation">horizontal</property>
+                <property name="margin-top">200</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="homogeneous">true</property>
+                <property name="spacing">30</property>
+                <child>
+                  <object class="GtkPicture" id="file_conversion_image">
+                    <property name="can-shrink">false</property>
+                    <property name="content-fit">contain</property>
+                    <property name="width-request">200</property>
+                    <property name="height-request">150</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkPicture" id="file_splitting_image">
+                    <property name="can-shrink">false</property>
+                    <property name="content-fit">contain</property>
+                    <property name="width-request">200</property>
+                    <property name="height-request">150</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkPicture" id="file_merging_image">
+                    <property name="can-shrink">false</property>
+                    <property name="content-fit">contain</property>
+                    <property name="width-request">200</property>
+                    <property name="height-request">150</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
-        </property>
+        </child>
       </object>
-    </property>
+    </child>
   </template>
   <menu id="primary_menu">
     <section>
@@ -42,7 +144,7 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About Parmanu-builder</attribute>
+        <attribute name="label" translatable="yes">_About parmanu-builder</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
