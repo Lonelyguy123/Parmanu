@@ -1,1 +1,1 @@
-# Parmanu
+Parmanu is an open source gnome application currently being developed by me. It is a one stop solution for all your file related problems such as file splitting, file merging and file conversions. This app will be very convienient to use and have features like handling additional files at once. 
