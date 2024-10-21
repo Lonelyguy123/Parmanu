@@ -2,7 +2,7 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="ParmanuBuilderWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">parmanu-builder</property>
+    <property name="title" translatable="yes">parmanu</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
     <child>

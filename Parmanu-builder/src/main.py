@@ -54,12 +54,12 @@ class ParmanuBuilderApplication(Adw.Application):
 
     def on_about_action(self, *args):
         """Callback for the app.about action."""
-        about = Adw.AboutDialog(application_name='parmanu-builder',
+        about = Adw.AboutDialog(application_name='parmanu',
                                 application_icon='org.gnome.parmanu',
-                                developer_name='Shastha-orb',
+                                developer_name='Shastha_Tyarla',
                                 version='0.1.0',
-                                developers=['Shastha-orb'],
-                                copyright='© 2024 Shastha-orb')
+                                developers=['Shastha_Tyarla'],
+                                copyright='© 2024 Shastha_Tyarla')
         # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
         about.set_translator_credits(_('translator-credits'))
         about.present(self.props.active_window)
