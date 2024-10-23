@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
@@ -22,201 +23,307 @@
           </object>
         </child>
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <property name="spacing">20</property>
-            <!-- Hero Section -->
+          <object class="GtkStack" id="main_stack">
+            <property name="transition-type">crossfade</property>
+
+            <!-- Main Menu Page -->
             <child>
-              <object class="AdwClamp">
-                <property name="maximum-size">800</property>
-                <property name="tightening-threshold">600</property>
-                <child>
+              <object class="GtkStackPage">
+                <property name="name">main_menu</property>
+                <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
                     <property name="spacing">20</property>
-                    <property name="margin-top">60</property>
-                    <property name="margin-bottom">60</property>
-                    <property name="margin-start">20</property>
-                    <property name="margin-end">20</property>
-                    <style>
-                      <class name="card"/>
-                      <class name="welcome-card"/>
-                    </style>
+                    <child>
+                      <object class="AdwClamp">
+                        <property name="maximum-size">800</property>
+                        <property name="tightening-threshold">600</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">20</property>
+                            <property name="margin-top">60</property>
+                            <property name="margin-bottom">60</property>
+                            <property name="margin-start">20</property>
+                            <property name="margin-end">20</property>
+                            <style>
+                              <class name="card"/>
+                              <class name="welcome-card"/>
+                            </style>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <property name="halign">center</property>
+                                <property name="spacing">10</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">application-x-executable-symbolic</property>
+                                    <property name="pixel-size">64</property>
+                                    <style>
+                                      <class name="accent"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="hero_title">
+                                    <property name="label">Parmanu</property>
+                                    <attributes>
+                                      <attribute name="weight" value="bold"/>
+                                      <attribute name="scale" value="2.5"/>
+                                    </attributes>
+                                    <style>
+                                      <class name="accent"/>
+                                    </style>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="hero_tagline">
+                                <property name="label">Your Ultimate File Manipulation Toolkit</property>
+                                <style>
+                                  <class name="title-2"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="hero_description">
+                                <property name="label">Transform, split, and merge your files with ease. Parmanu provides powerful tools for all your file processing needs.</property>
+                                <property name="wrap">true</property>
+                                <property name="justify">center</property>
+                                <style>
+                                  <class name="body"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <!-- Existing content -->
                     <child>
                       <object class="GtkBox">
-                        <property name="orientation">horizontal</property>
-                        <property name="halign">center</property>
-                        <property name="spacing">10</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">20</property>
+                        <property name="margin-top">20</property>
+                        <property name="margin-bottom">20</property>
+                        <property name="margin-start">20</property>
+                        <property name="margin-end">20</property>
                         <child>
-                          <object class="GtkImage">
-                            <property name="icon-name">application-x-executable-symbolic</property>
-                            <property name="pixel-size">64</property>
-                            <style>
-                              <class name="accent"/>
-                            </style>
+                          <object class="GtkBox">
+                            <property name="homogeneous">true</property>
+                            <property name="spacing">10</property>
+                            <child>
+                              <object class="GtkButton" id="file_conversion_button">
+                                <property name="label">File conversion</property>
+                                <property name="use_underline">True</property>
+                                <property name="width-request">150</property>
+                                <property name="height-request">150</property>
+                                <style>
+                                  <class name="suggested-action"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="file_splitting_button">
+                                <property name="label">File splitting</property>
+                                <property name="use_underline">True</property>
+                                <property name="width-request">150</property>
+                                <property name="height-request">150</property>
+                                <style>
+                                  <class name="suggested-action"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="file_merging_button">
+                                <property name="label">File merging</property>
+                                <property name="use_underline">True</property>
+                                <property name="width-request">150</property>
+                                <property name="height-request">150</property>
+                                <style>
+                                  <class name="suggested-action"/>
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="hero_title">
-                            <property name="label">Parmanu</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                              <attribute name="scale" value="2.5"/>
-                            </attributes>
-                            <style>
-                              <class name="accent"/>
-                            </style>
+                          <object class="GtkBox">
+                            <property name="homogeneous">true</property>
+                            <property name="spacing">30</property>
+                            <property name="margin-top">100-</property>
+                            <child>
+                              <object class="GtkPicture" id="file_conversion_image">
+                                <property name="can-shrink">false</property>
+                                <property name="content-fit">contain</property>
+                                <property name="width-request">200</property>
+                                <property name="height-request">150</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkPicture" id="file_splitting_image">
+                                <property name="can-shrink">false</property>
+                                <property name="content-fit">contain</property>
+                                <property name="width-request">200</property>
+                                <property name="height-request">150</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkPicture" id="file_merging_image">
+                                <property name="can-shrink">false</property>
+                                <property name="content-fit">contain</property>
+                                <property name="width-request">200</property>
+                                <property name="height-request">150</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkLabel" id="hero_tagline">
-                        <property name="label">Your Ultimate File Manipulation Toolkit</property>
-                        <style>
-                          <class name="title-2"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="hero_description">
-                        <property name="label">Transform, split, and merge your files with ease. Parmanu provides powerful tools for all your file processing needs.</property>
-                        <property name="wrap">true</property>
-                        <property name="justify">center</property>
-                        <style>
-                          <class name="body"/>
-                        </style>
-                      </object>
-                    </child>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
-            <!-- Existing content -->
+
+            <!-- File Conversion Page -->
             <child>
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="spacing">20</property>
-                <property name="margin-top">20</property>
-                <property name="margin-bottom">20</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <child>
+              <object class="GtkStackPage">
+                <property name="name">file_conversion</property>
+                <property name="child">
                   <object class="GtkBox">
-                    <property name="homogeneous">true</property>
-                    <property name="spacing">10</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">20</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-top">20</property>
                     <child>
-                      <object class="GtkButton" id="file_conversion_button">
-                        <property name="label">File conversion</property>
-                        <property name="use_underline">True</property>
-                        <property name="width-request">150</property>
-                        <property name="height-request">150</property>
-                        <style>
-                          <class name="suggested-action"/>
-                        </style>
+                      <object class="GtkButton" id="back_to_main_conversion">
+                        <property name="label">Back</property>
+                        <property name="halign">start</property>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="file_splitting_button">
-                        <property name="label">File splitting</property>
-                        <property name="use_underline">True</property>
-                        <property name="width-request">150</property>
-                        <property name="height-request">150</property>
+                      <object class="GtkLabel">
+                        <property name="label">File Conversion</property>
                         <style>
-                          <class name="suggested-action"/>
+                          <class name="title-1"/>
                         </style>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkButton" id="file_merging_button">
-                        <property name="label">File merging</property>
-                        <property name="use_underline">True</property>
-                        <property name="width-request">150</property>
-                        <property name="height-request">150</property>
-                        <style>
-                          <class name="suggested-action"/>
-                        </style>
-                      </object>
-                    </child>
+                    <!-- Add your file conversion interface here -->
                   </object>
-                </child>
-                <child>
-                  <object class="GtkBox">
-                    <property name="homogeneous">true</property>
-                    <property name="spacing">30</property>
-                    <property name="margin-top">100-</property>
-                    <child>
-                      <object class="GtkPicture" id="file_conversion_image">
-                        <property name="can-shrink">false</property>
-                        <property name="content-fit">contain</property>
-                        <property name="width-request">200</property>
-                        <property name="height-request">150</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkPicture" id="file_splitting_image">
-                        <property name="can-shrink">false</property>
-                        <property name="content-fit">contain</property>
-                        <property name="width-request">200</property>
-                        <property name="height-request">150</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkPicture" id="file_merging_image">
-                        <property name="can-shrink">false</property>
-                        <property name="content-fit">contain</property>
-                        <property name="width-request">200</property>
-                        <property name="height-request">150</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                </property>
               </object>
             </child>
-            <!-- Footer Section -->
+
+            <!-- File Splitting Page -->
             <child>
-              <object class="GtkBox">
-                <property name="orientation">horizontal</property>
-                <property name="spacing">10</property>
-                <property name="halign">center</property>
-                <property name="valign">end</property>
-                <property name="margin-top">20</property>
-                <property name="margin-bottom">20</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label">Support:</property>
-                    <style>
-                      <class name="footer-label"/>
-                    </style>
+              <object class="GtkStackPage">
+                <property name="name">file_splitting</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">20</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-top">20</property>
+                    <child>
+                      <object class="GtkButton" id="back_to_main_splitting">
+                        <property name="label">Back</property>
+                        <property name="halign">start</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label">File Splitting</property>
+                        <style>
+                          <class name="title-1"/>
+                        </style>
+                      </object>
+                    </child>
+                    <!-- Add your file splitting interface here -->
                   </object>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="support_email">
-                    <property name="label">shasthatyarla@gmail.com</property>
-                    <property name="uri">mailto:shasthatyarla@gmail.com</property>
-                    <style>
-                      <class name="footer-link"/>
-                    </style>
+                </property>
+              </object>
+            </child>
+
+            <!-- File Merging Page -->
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">file_merging</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">20</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="margin-top">20</property>
+                    <child>
+                      <object class="GtkButton" id="back_to_main_merging">
+                        <property name="label">Back</property>
+                        <property name="halign">start</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label">File Merging</property>
+                        <style>
+                          <class name="title-1"/>
+                        </style>
+                      </object>
+                    </child>
+                    <!-- Add your file merging interface here -->
                   </object>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="linkedin_link">
-                    <property name="label">LinkedIn</property>
-                    <property name="uri">https://www.linkedin.com/in/shastha-tyarla-2bb845263/</property>
-                    <style>
-                      <class name="footer-link"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLinkButton" id="instagram_link">
-                    <property name="label">Instagram</property>
-                    <property name="uri">https://www.instagram.com/shastha_tyarla/profilecard/?igsh=MWY3OHJhcW91YXhydg==</property>
-                    <style>
-                      <class name="footer-link"/>
-                    </style>
-                  </object>
-                </child>
+                </property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+        <!-- Footer Section -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="margin-top">20</property>
+            <property name="margin-bottom">20</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Support:</property>
+                <style>
+                  <class name="footer-label"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLinkButton" id="support_email">
+                <property name="label">shasthatyarla@gmail.com</property>
+                <property name="uri">mailto:shasthatyarla@gmail.com</property>
+                <style>
+                  <class name="footer-link"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLinkButton" id="linkedin_link">
+                <property name="label">LinkedIn</property>
+                <property name="uri">https://www.linkedin.com/in/shastha-tyarla-2bb845263/</property>
+                <style>
+                  <class name="footer-link"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLinkButton" id="instagram_link">
+                <property name="label">Instagram</property>
+                <property name="uri">https://www.instagram.com/shastha_tyarla/profilecard/?igsh=MWY3OHJhcW91YXhydg==</property>
+                <style>
+                  <class name="footer-link"/>
+                </style>
               </object>
             </child>
           </object>
@@ -241,4 +348,3 @@
     </section>
   </menu>
 </interface>
-
