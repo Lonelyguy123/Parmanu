@@ -19,6 +19,19 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
     file_splitting_image = Gtk.Template.Child()
     file_merging_image = Gtk.Template.Child()
 
+    # New template children for file conversion, splitting, and merging
+    select_file_button = Gtk.Template.Child()
+    file_path_entry = Gtk.Template.Child()
+    convert_button = Gtk.Template.Child()
+
+    select_split_file_button = Gtk.Template.Child()
+    split_file_path_entry = Gtk.Template.Child()
+    split_button = Gtk.Template.Child()
+
+    select_merge_file_button = Gtk.Template.Child()
+    merge_file_path_entry = Gtk.Template.Child()
+    merge_button = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -31,6 +44,16 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
         self.back_to_main_conversion.connect('clicked', self.on_back_clicked)
         self.back_to_main_splitting.connect('clicked', self.on_back_clicked)
         self.back_to_main_merging.connect('clicked', self.on_back_clicked)
+
+        # Connect signals for new widgets
+        self.select_file_button.connect('clicked', self.on_select_file_clicked)
+        self.convert_button.connect('clicked', self.on_convert_clicked)
+
+        self.select_split_file_button.connect('clicked', self.on_select_split_file_clicked)
+        self.split_button.connect('clicked', self.on_split_clicked)
+
+        self.select_merge_file_button.connect('clicked', self.on_select_merge_file_clicked)
+        self.merge_button.connect('clicked', self.on_merge_clicked)
 
         # Load images
         try:
@@ -96,3 +119,54 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
             print(f"Error handling file selection: {e}")
         finally:
             dialog.destroy()
+
+    def on_select_file_clicked(self, button):
+        """Handle select file button click"""
+        self.show_file_chooser(title="Select File for Conversion", callback=self.on_file_selected)
+
+    def on_file_selected(self, file_path):
+        """Handle file selection"""
+        self.file_path_entry.set_text(file_path)
+
+    def on_convert_clicked(self, button):
+        """Handle convert button click"""
+        file_path = self.file_path_entry.get_text()
+        if file_path:
+            print(f"Converting file: {file_path}")
+            # Add your file conversion logic here
+        else:
+            print("No file selected")
+
+    def on_select_split_file_clicked(self, button):
+        """Handle select split file button click"""
+        self.show_file_chooser(title="Select File for Splitting", callback=self.on_split_file_selected)
+
+    def on_split_file_selected(self, file_path):
+        """Handle split file selection"""
+        self.split_file_path_entry.set_text(file_path)
+
+    def on_split_clicked(self, button):
+        """Handle split button click"""
+        file_path = self.split_file_path_entry.get_text()
+        if file_path:
+            print(f"Splitting file: {file_path}")
+            # Add your file splitting logic here
+        else:
+            print("No file selected")
+
+    def on_select_merge_file_clicked(self, button):
+        """Handle select merge file button click"""
+        self.show_file_chooser(title="Select File for Merging", callback=self.on_merge_file_selected)
+
+    def on_merge_file_selected(self, file_path):
+        """Handle merge file selection"""
+        self.merge_file_path_entry.set_text(file_path)
+
+    def on_merge_clicked(self, button):
+        """Handle merge button click"""
+        file_path = self.merge_file_path_entry.get_text()
+        if file_path:
+            print(f"Merging file: {file_path}")
+            # Add your file merging logic here
+        else:
+            print("No file selected")

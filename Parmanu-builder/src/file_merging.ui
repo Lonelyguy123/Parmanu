@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <object class="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">20</property>
+    <property name="margin-start">20</property>
+    <property name="margin-end">20</property>
+    <property name="margin-top">20</property>
+    <child>
+      <object class="GtkButton" id="back_to_main_merging">
+        <property name="label">Back</property>
+        <property name="halign">start</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label">File Merging</property>
+        <style>
+          <class name="title-1"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkButton" id="select_merge_file_button">
+            <property name="label">Select File</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkEntry" id="merge_file_path_entry">
+            <property name="placeholder-text">File path</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="merge_button">
+        <property name="label">Merge</property>
+      </object>
+    </child>
+  </object>
+</interface>

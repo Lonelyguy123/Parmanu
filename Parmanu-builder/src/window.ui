@@ -211,7 +211,27 @@
                         </style>
                       </object>
                     </child>
-                    <!-- Add your file conversion interface here -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkButton" id="select_file_button">
+                            <property name="label">Select File</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="file_path_entry">
+                            <property name="placeholder-text">File path</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="convert_button">
+                        <property name="label">Convert</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
               </object>
@@ -242,7 +262,27 @@
                         </style>
                       </object>
                     </child>
-                    <!-- Add your file splitting interface here -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkButton" id="select_split_file_button">
+                            <property name="label">Select File</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="split_file_path_entry">
+                            <property name="placeholder-text">File path</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="split_button">
+                        <property name="label">Split</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
               </object>
@@ -273,7 +313,27 @@
                         </style>
                       </object>
                     </child>
-                    <!-- Add your file merging interface here -->
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkButton" id="select_merge_file_button">
+                            <property name="label">Select File</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="merge_file_path_entry">
+                            <property name="placeholder-text">File path</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="merge_button">
+                        <property name="label">Merge</property>
+                      </object>
+                    </child>
                   </object>
                 </property>
               </object>
