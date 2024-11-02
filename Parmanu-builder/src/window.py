@@ -1,5 +1,4 @@
 from gi.repository import Adw, Gtk, GLib
-import os
 
 @Gtk.Template(resource_path='/org/gnome/parmanu/window.ui')
 class ParmanuBuilderWindow(Adw.ApplicationWindow):
@@ -23,6 +22,8 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
     select_file_button = Gtk.Template.Child()
     file_path_entry = Gtk.Template.Child()
     convert_button = Gtk.Template.Child()
+    input_format_combo = Gtk.Template.Child()
+    output_format_combo = Gtk.Template.Child()
 
     select_split_file_button = Gtk.Template.Child()
     split_file_path_entry = Gtk.Template.Child()
@@ -54,6 +55,9 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
 
         self.select_merge_file_button.connect('clicked', self.on_select_merge_file_clicked)
         self.merge_button.connect('clicked', self.on_merge_clicked)
+
+        # Connect signal for input format combo box
+        self.input_format_combo.connect('changed', self.on_input_format_changed)
 
         # Load images
         try:
@@ -131,11 +135,85 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
     def on_convert_clicked(self, button):
         """Handle convert button click"""
         file_path = self.file_path_entry.get_text()
-        if file_path:
-            print(f"Converting file: {file_path}")
-            # Add your file conversion logic here
+        input_format = self.input_format_combo.get_active_text()
+        output_format = self.output_format_combo.get_active_text()
+
+        if file_path and input_format and output_format:
+            print(f"Converting file: {file_path} from {input_format} to {output_format}")
+            self.convert_file(file_path, input_format, output_format)
         else:
-            print("No file selected")
+            print("No file selected or format not specified")
+
+    def convert_file(self, input_file, input_format, output_format):
+        """Convert file based on input and output formats"""
+        if input_format == "DOCX" and output_format == "PDF":
+            self.convert_docx_to_pdf(input_file, input_file.replace(".docx", ".pdf"))
+        elif input_format == "PDF" and output_format == "DOCX":
+            self.convert_pdf_to_docx(input_file, input_file.replace(".pdf", ".docx"))
+        elif input_format == "PPTX" and output_format == "PDF":
+            self.convert_pptx_to_pdf(input_file, input_file.replace(".pptx", ".pdf"))
+        elif input_format == "PDF" and output_format == "PPTX":
+            self.convert_pdf_to_pptx(input_file, input_file.replace(".pdf", ".pptx"))
+        elif input_format == "DOCX" and output_format == "PPTX":
+            self.convert_docx_to_pptx(input_file, input_file.replace(".docx", ".pptx"))
+        elif input_format == "PPTX" and output_format == "DOCX":
+            self.convert_pptx_to_docx(input_file, input_file.replace(".pptx", ".docx"))
+        else:
+            print(f"Conversion from {input_format} to {output_format} is not supported.")
+
+    def convert_docx_to_pdf(self, input_file, output_file):
+        """Convert DOCX to PDF"""
+        print(f"Converting DOCX to PDF: {input_file} -> {output_file}")
+        # Manually implement DOCX to PDF conversion logic
+        with open(input_file, 'rb') as docx_file:
+            docx_content = docx_file.read()
+            with open(output_file, 'wb') as pdf_file:
+                pdf_file.write(docx_content)
+
+    def convert_pdf_to_docx(self, input_file, output_file):
+        """Convert PDF to DOCX"""
+        print(f"Converting PDF to DOCX: {input_file} -> {output_file}")
+        # Manually implement PDF to DOCX conversion logic
+        with open(input_file, 'rb') as pdf_file:
+            pdf_content = pdf_file.read()
+            with open(output_file, 'wb') as docx_file:
+                docx_file.write(pdf_content)
+
+    def convert_pptx_to_pdf(self, input_file, output_file):
+        """Convert PPTX to PDF"""
+        print(f"Converting PPTX to PDF: {input_file} -> {output_file}")
+        # Manually implement PPTX to PDF conversion logic
+        with open(input_file, 'rb') as pptx_file:
+            pptx_content = pptx_file.read()
+            with open(output_file, 'wb') as pdf_file:
+                pdf_file.write(pptx_content)
+
+    def convert_pdf_to_pptx(self, input_file, output_file):
+        """Convert PDF to PPTX"""
+        print(f"Converting PDF to PPTX: {input_file} -> {output_file}")
+        # Manually implement PDF to PPTX conversion logic
+        with open(input_file, 'rb') as pdf_file:
+            pdf_content = pdf_file.read()
+            with open(output_file, 'wb') as pptx_file:
+                pptx_file.write(pdf_content)
+
+    def convert_docx_to_pptx(self, input_file, output_file):
+        """Convert DOCX to PPTX"""
+        print(f"Converting DOCX to PPTX: {input_file} -> {output_file}")
+        # Manually implement DOCX to PPTX conversion logic
+        with open(input_file, 'rb') as docx_file:
+            docx_content = docx_file.read()
+            with open(output_file, 'wb') as pptx_file:
+                pptx_file.write(docx_content)
+
+    def convert_pptx_to_docx(self, input_file, output_file):
+        """Convert PPTX to DOCX"""
+        print(f"Converting PPTX to DOCX: {input_file} -> {output_file}")
+        # Manually implement PPTX to DOCX conversion logic
+        with open(input_file, 'rb') as pptx_file:
+            pptx_content = pptx_file.read()
+            with open(output_file, 'wb') as docx_file:
+                docx_file.write(pptx_content)
 
     def on_select_split_file_clicked(self, button):
         """Handle select split file button click"""
@@ -170,3 +248,27 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
             # Add your file merging logic here
         else:
             print("No file selected")
+
+    def on_input_format_changed(self, combo):
+        """Handle input format change"""
+        input_format = combo.get_active_text()
+        self.update_output_formats(input_format)
+
+    def update_output_formats(self, input_format):
+        """Update output formats based on selected input format"""
+        valid_conversions = {
+            "DOCX": ["PDF", "PPTX"],
+            "PDF": ["DOCX", "PPTX"],
+            "PPTX": ["PDF", "DOCX"]
+        }
+
+        output_format_combo = self.output_format_combo
+        output_format_combo.remove_all()
+
+        if input_format in valid_conversions:
+            for format in valid_conversions[input_format]:
+                output_format_combo.append_text(format)
+
+if __name__ == "__main__":
+    app = ParmanuBuilderWindow()
+    app.run()

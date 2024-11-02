@@ -216,6 +216,69 @@
                         <property name="orientation">horizontal</property>
                         <property name="spacing">10</property>
                         <child>
+                          <object class="GtkLabel">
+                            <property name="label">Select Input Format:</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkComboBoxText" id="input_format_combo">
+                            <items>
+                              <item translatable="yes">DOCX</item>
+                              <item translatable="yes">PDF</item>
+                              <item translatable="yes">PPTX</item>
+                              <item translatable="yes">XLSX</item>
+                              <item translatable="yes">TXT</item>
+                              <item translatable="yes">RTF</item>
+                              <item translatable="yes">ODT</item>
+                              <item translatable="yes">HTML</item>
+                              <item translatable="yes">EPUB</item>
+                              <item translatable="yes">JPEG</item>
+                              <item translatable="yes">PNG</item>
+                              <item translatable="yes">SVG</item>
+                              <item translatable="yes">CSV</item>
+                              <item translatable="yes">MD</item>
+                              <item translatable="yes">MP3</item>
+                            </items>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">Select Output Format:</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkComboBoxText" id="output_format_combo">
+                            <items>
+                              <item translatable="yes">PDF</item>
+                              <item translatable="yes">DOCX</item>
+                              <item translatable="yes">PPTX</item>
+                              <item translatable="yes">TXT</item>
+                              <item translatable="yes">RTF</item>
+                              <item translatable="yes">ODT</item>
+                              <item translatable="yes">HTML</item>
+                              <item translatable="yes">EPUB</item>
+                              <item translatable="yes">JPEG</item>
+                              <item translatable="yes">PNG</item>
+                              <item translatable="yes">SVG</item>
+                              <item translatable="yes">CSV</item>
+                              <item translatable="yes">XLSX</item>
+                              <item translatable="yes">Text</item>
+                            </items>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
                           <object class="GtkButton" id="select_file_button">
                             <property name="label">Select File</property>
                           </object>
