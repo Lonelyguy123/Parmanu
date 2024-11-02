@@ -226,18 +226,6 @@
                               <item translatable="yes">DOCX</item>
                               <item translatable="yes">PDF</item>
                               <item translatable="yes">PPTX</item>
-                              <item translatable="yes">XLSX</item>
-                              <item translatable="yes">TXT</item>
-                              <item translatable="yes">RTF</item>
-                              <item translatable="yes">ODT</item>
-                              <item translatable="yes">HTML</item>
-                              <item translatable="yes">EPUB</item>
-                              <item translatable="yes">JPEG</item>
-                              <item translatable="yes">PNG</item>
-                              <item translatable="yes">SVG</item>
-                              <item translatable="yes">CSV</item>
-                              <item translatable="yes">MD</item>
-                              <item translatable="yes">MP3</item>
                             </items>
                           </object>
                         </child>
@@ -258,17 +246,6 @@
                               <item translatable="yes">PDF</item>
                               <item translatable="yes">DOCX</item>
                               <item translatable="yes">PPTX</item>
-                              <item translatable="yes">TXT</item>
-                              <item translatable="yes">RTF</item>
-                              <item translatable="yes">ODT</item>
-                              <item translatable="yes">HTML</item>
-                              <item translatable="yes">EPUB</item>
-                              <item translatable="yes">JPEG</item>
-                              <item translatable="yes">PNG</item>
-                              <item translatable="yes">SVG</item>
-                              <item translatable="yes">CSV</item>
-                              <item translatable="yes">XLSX</item>
-                              <item translatable="yes">Text</item>
                             </items>
                           </object>
                         </child>
@@ -288,6 +265,53 @@
                             <property name="placeholder-text">File path</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">Output File Path:</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="output_file_entry">
+                            <property name="placeholder-text">Output file path</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="select_output_file_button">
+                            <property name="label">Browse</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">Output File Name:</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="output_file_name_entry">
+                            <property name="placeholder-text">Output file name</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="add_conversion_button">
+                        <property name="label">Add Conversion</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkListBox" id="conversion_listbox">
+                        <property name="selection-mode">none</property>
                       </object>
                     </child>
                     <child>

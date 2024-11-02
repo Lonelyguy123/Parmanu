@@ -24,6 +24,11 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
     convert_button = Gtk.Template.Child()
     input_format_combo = Gtk.Template.Child()
     output_format_combo = Gtk.Template.Child()
+    output_file_entry = Gtk.Template.Child()
+    output_file_name_entry = Gtk.Template.Child()
+    add_conversion_button = Gtk.Template.Child()
+    conversion_listbox = Gtk.Template.Child()
+    select_output_file_button = Gtk.Template.Child()
 
     select_split_file_button = Gtk.Template.Child()
     split_file_path_entry = Gtk.Template.Child()
@@ -49,6 +54,8 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
         # Connect signals for new widgets
         self.select_file_button.connect('clicked', self.on_select_file_clicked)
         self.convert_button.connect('clicked', self.on_convert_clicked)
+        self.add_conversion_button.connect('clicked', self.on_add_conversion_clicked)
+        self.select_output_file_button.connect('clicked', self.on_select_output_file_clicked)
 
         self.select_split_file_button.connect('clicked', self.on_select_split_file_clicked)
         self.split_button.connect('clicked', self.on_split_clicked)
@@ -92,12 +99,12 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
         """Handle back button clicks"""
         self.main_stack.set_visible_child_name('main_menu')
 
-    def show_file_chooser(self, title="Select File", callback=None):
+    def show_file_chooser(self, title="Select File", callback=None, action=Gtk.FileChooserAction.OPEN):
         """Generic file chooser dialog"""
         dialog = Gtk.FileChooserDialog(
             title=title,
             parent=self,
-            action=Gtk.FileChooserAction.OPEN
+            action=action
         )
 
         dialog.add_buttons(
@@ -134,30 +141,39 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
 
     def on_convert_clicked(self, button):
         """Handle convert button click"""
-        file_path = self.file_path_entry.get_text()
-        input_format = self.input_format_combo.get_active_text()
-        output_format = self.output_format_combo.get_active_text()
+        conversions = []
+        for row in self.conversion_listbox:
+            box = row.get_child()
+            label = box.get_first_child()
+            conversions.append(label.get_text())
 
-        if file_path and input_format and output_format:
-            print(f"Converting file: {file_path} from {input_format} to {output_format}")
-            self.convert_file(file_path, input_format, output_format)
+        if conversions:
+            print(conversions)
+            for conversion in conversions:
+                parts = conversion.split("Convert ", 1)[1].split(" from ")
+                file_path = parts[0]
+                input_format, output_format_and_file = parts[1].split(" to ")
+                output_format, output_file = output_format_and_file.split(" as ")
+                self.convert_file(file_path, input_format, output_format, output_file)
+            self.conversion_listbox.remove_all()
+            self.show_message("All conversions completed successfully.")
         else:
-            print("No file selected or format not specified")
+            print("No conversions to perform")
 
-    def convert_file(self, input_file, input_format, output_format):
+    def convert_file(self, input_file, input_format, output_format, output_file):
         """Convert file based on input and output formats"""
         if input_format == "DOCX" and output_format == "PDF":
-            self.convert_docx_to_pdf(input_file, input_file.replace(".docx", ".pdf"))
+            self.convert_docx_to_pdf(input_file, output_file)
         elif input_format == "PDF" and output_format == "DOCX":
-            self.convert_pdf_to_docx(input_file, input_file.replace(".pdf", ".docx"))
+            self.convert_pdf_to_docx(input_file, output_file)
         elif input_format == "PPTX" and output_format == "PDF":
-            self.convert_pptx_to_pdf(input_file, input_file.replace(".pptx", ".pdf"))
+            self.convert_pptx_to_pdf(input_file, output_file)
         elif input_format == "PDF" and output_format == "PPTX":
-            self.convert_pdf_to_pptx(input_file, input_file.replace(".pdf", ".pptx"))
+            self.convert_pdf_to_pptx(input_file, output_file)
         elif input_format == "DOCX" and output_format == "PPTX":
-            self.convert_docx_to_pptx(input_file, input_file.replace(".docx", ".pptx"))
+            self.convert_docx_to_pptx(input_file, output_file)
         elif input_format == "PPTX" and output_format == "DOCX":
-            self.convert_pptx_to_docx(input_file, input_file.replace(".pptx", ".docx"))
+            self.convert_pptx_to_docx(input_file, output_file)
         else:
             print(f"Conversion from {input_format} to {output_format} is not supported.")
 
@@ -268,6 +284,48 @@ class ParmanuBuilderWindow(Adw.ApplicationWindow):
         if input_format in valid_conversions:
             for format in valid_conversions[input_format]:
                 output_format_combo.append_text(format)
+
+    def on_add_conversion_clicked(self, button):
+        """Handle add conversion button click"""
+        file_path = self.file_path_entry.get_text()
+        output_file_path = self.output_file_entry.get_text()
+        output_file_name = self.output_file_name_entry.get_text()
+        input_format = self.input_format_combo.get_active_text()
+        output_format = self.output_format_combo.get_active_text()
+
+        if file_path and input_format and output_format and output_file_path and output_file_name:
+            output_file = f"{output_file_path}/{output_file_name}.{output_format.lower()}"
+            self.add_conversion_to_list(file_path, input_format, output_format, output_file)
+        else:
+            print("No file selected or format not specified")
+
+    def add_conversion_to_list(self, file_path, input_format, output_format, output_file):
+        """Add conversion to the list"""
+        row = Gtk.ListBoxRow()
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+        label = Gtk.Label(label=f"Convert {file_path} from {input_format} to {output_format} as {output_file}")
+        box.append(label)  # Use append instead of add
+        row.set_child(box)
+        self.conversion_listbox.append(row)
+        row.show()  # Show the individual row instead of the entire listbox
+
+    def on_select_output_file_clicked(self, button):
+        """Handle select output file button click"""
+        self.show_file_chooser(title="Select Output Directory", callback=self.on_output_file_selected, action=Gtk.FileChooserAction.SELECT_FOLDER)
+
+    def on_output_file_selected(self, file_path):
+        """Handle output file selection"""
+        self.output_file_entry.set_text(file_path)
+
+    def show_message(self, message):
+        """Show a message dialog"""
+        dialog = Gtk.MessageDialog(
+            transient_for=self,
+            message_type=Gtk.MessageType.INFO,
+            buttons=Gtk.ButtonsType.OK,
+            text=message,
+        )
+        dialog.present()  # Use present instead of run
 
 if __name__ == "__main__":
     app = ParmanuBuilderWindow()
